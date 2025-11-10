@@ -20,14 +20,14 @@ namespace toyscartoons
         public async Task AddCartoon(Cartoon cartoon)
         {
 
-            LoadAutoIncr();
+          
              AutoIncr[1]++;
                 cartoon.Id = AutoIncr[1];
                 SaveAutoIncr();
             Cartoons.Add(cartoon);
             SaveCartoons();
         }
-        public async void SaveCartoons()
+        public async Task SaveCartoons()
         {
             string filepath = Path.Combine(FileSystem.Current.AppDataDirectory, "dbCartoon.json");
 
@@ -53,14 +53,14 @@ namespace toyscartoons
 
         public async Task AddDoll(Doll doll)
         {
-                LoadAutoIncr();
+               
                 AutoIncr[0]++;
                 doll.Id = AutoIncr[0];
                 SaveAutoIncr();
             Dolls.Add(doll);
             SaveDoll();
         }
-        public async void SaveDoll()
+        public async Task SaveDoll()
         {
 
             string filepath = Path.Combine(FileSystem.Current.AppDataDirectory, "dbDoll.json");
@@ -81,7 +81,7 @@ namespace toyscartoons
             Dolls = JsonSerializer.Deserialize<List<Doll>>(data1);
             return new List<Doll>(Dolls);
         }
-        public async void DeleteCartoon(int cartoonId)
+        public async Task DeleteCartoon(int cartoonId)
             {
             Cartoon cartoonDel = new Cartoon();
             foreach (Cartoon cartoon in Cartoons)
@@ -95,7 +95,7 @@ namespace toyscartoons
             SaveCartoons();
             }
 
-        public async void DeleteToy(int dollId)
+        public async Task DeleteToy(int dollId)
         {
             Doll dollDel = new Doll();
             foreach (Doll doll in Dolls)
@@ -109,7 +109,7 @@ namespace toyscartoons
             SaveDoll();
         }
 
-        public async void UpdateToy(int dollId, Doll upddoll)
+        public async Task UpdateToy(int dollId, Doll upddoll)
         {
             foreach (Doll doll in Dolls)
             {
@@ -127,7 +127,7 @@ namespace toyscartoons
             }
         }
 
-        public async void UpdateCartoon(int newcartoonsId, Cartoon cartoonupd)
+        public async Task UpdateCartoon(int newcartoonsId, Cartoon cartoonupd)
         {
             foreach(Cartoon cartoon in Cartoons)
             {
@@ -145,7 +145,7 @@ namespace toyscartoons
          
         }
 
-        public async void SaveAutoIncr()
+        public async Task SaveAutoIncr()
         {
             string filepath = Path.Combine(FileSystem.Current.AppDataDirectory, "dbAutoIncr.json");
 
@@ -153,12 +153,12 @@ namespace toyscartoons
             JsonSerializer.Serialize(fileStream, AutoIncr);
         }
 
-        public async void LoadAutoIncr()
+        public async Task LoadAutoIncr()
         {
             string filepath = Path.Combine(FileSystem.Current.AppDataDirectory, "dbAutoIncr.json");
             if (!File.Exists(filepath))
             {
-                AutoIncr = new List<int> {0, 0 };
+                AutoIncr = new List<int> {1, 1 };
                
             }
             var data1 = await File.ReadAllTextAsync(filepath);

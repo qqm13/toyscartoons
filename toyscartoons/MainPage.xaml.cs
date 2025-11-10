@@ -9,7 +9,7 @@ namespace toyscartoons
         public MainPage()
         {
             InitializeComponent();
-            
+            Db.LoadAutoIncr();
         }
 
 

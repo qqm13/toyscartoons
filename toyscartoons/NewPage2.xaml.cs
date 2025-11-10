@@ -29,6 +29,7 @@ public partial class NewPage2 : ContentPage
     public async void LoadList()
     {
         Cartoons = await Db.LoadCartoons();
+        Db.LoadAutoIncr();
     }
 
    

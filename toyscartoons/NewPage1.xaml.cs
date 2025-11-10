@@ -39,6 +39,7 @@ public partial class NewPage1 : ContentPage
     {
         Dolls = await Db.LoadDoll();
         Cartoons = await Db.LoadCartoons();
+        Db.LoadAutoIncr();
     }
     private void Save(object sender, EventArgs e)
     {
