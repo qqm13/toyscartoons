@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+   
 <Shell
     x:Class="toyscartoons.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
@@ -6,9 +7,59 @@
     xmlns:local="clr-namespace:toyscartoons"
     Title="toyscartoons">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+
+    <Shell.FlyoutHeader>
+        <Label>Items</Label>
+    </Shell.FlyoutHeader>
+    <Shell.FlyoutFooter>
+        <Button BackgroundColor="Purple" Text="MainPage" Margin="10" Clicked="Button_Clicked"/>
+    </Shell.FlyoutFooter>
+
+
+    <Tab Title="MainPage" Shell.BackgroundColor="CornflowerBlue" Shell.ForegroundColor="Blue" Shell.TitleColor="WhiteSmoke" Shell.FlyoutBackdrop="Black">
+        <ShellContent
+           
+         Title="Home"
+          ContentTemplate="{DataTemplate local:Auth}"
+         Route="Auth" />
+    </Tab>
+
+    <FlyoutItem Title="Doll">
+       
+        <ShellContent
+         Title="NewPage1"
+         ContentTemplate="{DataTemplate local:NewPage1}"
+         Route="NewPage1" />
+        </FlyoutItem>
+
+    <FlyoutItem Title="Cartoon">
+        <ShellContent
+         Title="NewPage2"
+         ContentTemplate="{DataTemplate local:NewPage2}"
+         Route="NewPage2" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="ShowItems">
+        <ShellContent
+             Title="N3"
+            ContentTemplate="{DataTemplate local:N3}"
+            Route="N3" />
+    </FlyoutItem>
+
+    <TabBar Title="Register">
+        <ShellContent
+              Title="Register"
+             ContentTemplate="{DataTemplate local:Register}"
+              Route="Register" />
+    </TabBar>
+
+    <TabBar Title="MaunPage">
+        <ShellContent
+            Title="Auth"
+              ContentTemplate="{DataTemplate local:MainPage}"
+           Route="MainPage" 
+            />
+    </TabBar>
+  
 
 </Shell>

@@ -7,6 +7,7 @@ namespace toyscartoons;
 
 public partial class N3 : ContentPage
 {
+    public ImageSource ImageSourceDollShow { get; set; }
     public int RequestId { get; set; } = 0;
     
          public int RequestIdDoll { get; set; } = 0;
@@ -31,7 +32,7 @@ public partial class N3 : ContentPage
         set { dollsShow = value; OnPropertyChanged(); }
     }
     private List<Doll> dolls = new List<Doll>();
-    public DB Db { get; set; } = new DB();
+
 
 
     public List<Doll> Dolls
@@ -40,10 +41,10 @@ public partial class N3 : ContentPage
         set { dolls = value; OnPropertyChanged(); }
     }
 
-    public N3(DB dB)
+    public N3()
     {
+       
         InitializeComponent();
-        Db = dB;
         LoadList();
         BindingContext = this;
 
@@ -55,12 +56,15 @@ public partial class N3 : ContentPage
     }
     public async void LoadList()
     {
-        Dolls = await Db.LoadDoll();
-        Cartoons = await Db.LoadCartoons();
+        Dolls = await (await DB.GetDBAsync()).GetDolls();
+        Cartoons = await ( await DB.GetDBAsync()).GetCartoons();
     }
 
     private void ShowDoll(object sender, EventArgs e)
     {
         DollsShow = Dolls.Where(s => s.Id == RequestIdDoll).ToList();
+        //Doll d0llsShow = DollsShow[0];
+        //ImageSourceDollShow = ImageSource.FromStream(() => new MemoryStream(d0llsShow.Image));
     }
+
 }

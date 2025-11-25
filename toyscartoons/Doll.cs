@@ -15,6 +15,8 @@ namespace toyscartoons
         public DateTime PublichDate { get; set; }
         public string Description { get; set; }
         public Cartoon Cartoon { get; set; }
+        //public string ImagePath { get; set; }
+        //public byte[] Image { get; set; }
 
     }
 }

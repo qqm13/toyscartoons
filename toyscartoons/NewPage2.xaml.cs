@@ -1,6 +1,8 @@
+
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
+
 
 namespace toyscartoons;
 
@@ -10,7 +12,6 @@ public partial class NewPage2 : ContentPage
     public int DeleteId { get; set; } = 0;
 
     private List<Cartoon> cartoons = new List<Cartoon>();
-    public DB Db { get; set; } = new DB();
 
     public Cartoon CartoonHere { get; set; } = new Cartoon();
     public List<Cartoon> Cartoons
@@ -18,38 +19,40 @@ public partial class NewPage2 : ContentPage
         get => cartoons;
         set { cartoons = value; OnPropertyChanged(); }
     }
-    public NewPage2(DB dB)
+    public NewPage2()
 	{
+        
 		InitializeComponent();
-        Db = dB;
         LoadList();
         BindingContext = this;
 	}
 
     public async void LoadList()
     {
-        Cartoons = await Db.LoadCartoons();
-        Db.LoadAutoIncr();
+        Cartoons = await (await DB.GetDBAsync()).GetCartoons();
+        await (await DB.GetDBAsync()).LoadAutoIncr();
     }
 
    
-    private void Save(object sender, EventArgs e)
+    private async void Save(object sender, EventArgs e)
     {
-        Db.AddCartoon(CartoonHere);
+        await (await DB.GetDBAsync()).AddCartoon(CartoonHere);
         LoadList(); 
     }
 
  
 
-    private void Deleted(object sender, EventArgs e)
+    private async void Deleted(object sender, EventArgs e)
     {
-        Db.DeleteCartoon(DeleteId);
+        await(await DB.GetDBAsync()).DeleteCartoon(DeleteId);
         LoadList();
     }
 
-    private void Update(object sender, EventArgs e)
+    private async void Update(object sender, EventArgs e)
     {
-        Db.UpdateCartoon(DeleteId, CartoonHere);
+        await(await DB.GetDBAsync()).UpdateCartoon(DeleteId, CartoonHere);        
         LoadList();
     }
+
+  
 }

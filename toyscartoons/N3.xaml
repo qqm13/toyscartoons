@@ -87,7 +87,9 @@
                         </DataTemplate>
                     </CarouselView.ItemTemplate>
                 </CarouselView>
-        
+        <Image Source="{Binding ImageSourceDollShow}" Grid.Row="8"  >
+            
+        </Image>
 
     </Grid>
 </ContentPage>

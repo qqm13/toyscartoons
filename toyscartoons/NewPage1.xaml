@@ -3,7 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="toyscartoons.NewPage1"
              Title="Add Doll">
-    <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,*,Auto,Auto,Auto"  ColumnDefinitions="*,*,*" Padding="10" BackgroundColor="LavenderBlush">
+    <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,*,Auto,Auto,Auto,Auto,Auto"  ColumnDefinitions="*,*,*" Padding="10" BackgroundColor="LavenderBlush">
+        <ScrollView>
+            <StackLayout>
+                
+            </StackLayout>
+        </ScrollView>
+        
         <Label Text="Введите артикул Куклы" Grid.Row="0" Grid.ColumnSpan="2" Margin="13,0,10,10"/>
         <Entry Grid.Row="1" Grid.ColumnSpan="2" Margin="10,0,20,0" Text="{Binding DollHere.Articul}"/>
         <Label Text="Введите название Куклы" Grid.Row="2" Grid.ColumnSpan="2" Margin="13,0,10,10"/>
@@ -18,14 +24,16 @@
         <Picker Grid.Row="11" Grid.ColumnSpan="2" Margin="10,0,20,0" SelectedItem="{Binding DollHere.Cartoon}" ItemsSource="{Binding Cartoons}" ItemDisplayBinding="{Binding Titile}"/>
         <Button Grid.Row="12" Text="Save" Clicked="Save" FontSize="16" Margin="100,20,-150,0" BackgroundColor="LightPink"/>
 
-        <Entry Grid.Row="14" Grid.ColumnSpan="1"  Margin="150,0,-100,0" Text="{Binding DeleteId}"/>
         
-            <Button Grid.Row="15" Text="Delete" Clicked="Deleted" FontSize="16" Margin="100,20,-150,0" BackgroundColor="LightPink"/>
-            <Button Grid.Row="16" Text="Update" Clicked="Update" FontSize="16" Margin="100,20,-150,0" BackgroundColor="LightPink"/>
+        <!--<Entry Text="{Binding DollHere.ImagePath}" Grid.Row="12"/>-->
         
-       
+        <Entry Grid.Row="15" Grid.ColumnSpan="1"  Margin="150,0,-100,0" Text="{Binding DeleteId}"/>
         
-         
+            <Button Grid.Row="16" Text="Delete" Clicked="Deleted" FontSize="16" Margin="100,20,-150,0" BackgroundColor="LightPink"/>
+            <Button Grid.Row="17" Text="Update" Clicked="Update" FontSize="16" Margin="100,20,-150,0" BackgroundColor="LightPink"/>
+
+
+   
         
 
 

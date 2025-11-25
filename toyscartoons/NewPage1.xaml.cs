@@ -17,18 +17,16 @@ public partial class NewPage1 : ContentPage
     public Doll DollHere { get; set; } = new Doll();
 
     private List<Doll> dolls = new List<Doll>();
-    public DB Db { get; set; } = new DB();
+   
 
-    
     public List<Doll> Dolls
     {
         get => dolls;
         set { dolls = value; OnPropertyChanged(); }
     }
-    public NewPage1(DB dB)
-	{
-		InitializeComponent();
-        Db = dB;
+    public NewPage1()
+    {
+        InitializeComponent();
         LoadList();
         BindingContext = this;
 
@@ -36,27 +34,31 @@ public partial class NewPage1 : ContentPage
 
 
     public async void LoadList()
-    {
-        Dolls = await Db.LoadDoll();
-        Cartoons = await Db.LoadCartoons();
-        Db.LoadAutoIncr();
+    {       
+        Dolls = await (await DB.GetDBAsync()).GetDolls();
+        Cartoons = await (await DB.GetDBAsync()).GetCartoons();
+        await (await DB.GetDBAsync()).LoadAutoIncr();
     }
-    private void Save(object sender, EventArgs e)
+    private async void Save(object sender, EventArgs e)
     {
-        Db.AddDoll(DollHere);
+       
+        //DollHere.Image = File.ReadAllBytes(DollHere.ImagePath);
+        await(await DB.GetDBAsync()).AddDoll(DollHere);                               
         LoadList();
     }
 
     private async void Deleted(object sender, EventArgs e)
     {
-        Db.DeleteToy(DeleteId);
+        await (await DB.GetDBAsync()).DeleteToy(DeleteId);
         LoadList();
     }
 
-    private void Update(object sender, EventArgs e)
+    private async void Update(object sender, EventArgs e)
     {
-        Db.UpdateToy(DeleteId, DollHere);
+        await(await DB.GetDBAsync()).UpdateToy(DeleteId, DollHere);       
         LoadList();
 
     }
+
+  
 }

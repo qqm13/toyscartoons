@@ -65,12 +65,24 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Auth.xaml.cs">
+	    <DependentUpon>Auth.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Register.xaml.cs">
+	    <DependentUpon>Register.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="N3.xaml.cs">
 	    <DependentUpon>N3.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Auth.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Register.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="NewPage1.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
